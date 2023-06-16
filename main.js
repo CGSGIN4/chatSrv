@@ -1,6 +1,3 @@
-import { io } from "socket.io-client";
-import { fs } from "fs";
-
 async function main() {
   const socket = io();
 
