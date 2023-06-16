@@ -2,7 +2,6 @@ const http = require("http");
 const express = require("express");
 const morgan = require("morgan");
 const { Server } = require("socket.io");
-const fs = require("fs");
 
 const app = express();
 app.use(morgan("combined"));
@@ -20,9 +19,6 @@ io.on("connection", (socket) => {
   socket.on("MessageToServer", (msg) => {
     const replyMsg = msg;
     console.log(replyMsg);
-
-    let fileContent = fs.readFileSync("../dist/chat.txt", "utf8");
-    fs.appendFileSync("../dist/chat.txt", replyMsg);
 
     for (client of clients) {
       client.emit("MessageFromServer", replyMsg);
