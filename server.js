@@ -39,5 +39,5 @@ io.on("connection", (socket) => {
 });
 
 server.listen(process.env.PORT || 1624, () => {
-  console.log(`Server started on port ${server.address().port} :)`);
+  console.log(`Server started on ${server.address()} :)`);
 });
