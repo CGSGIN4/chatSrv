@@ -2,20 +2,20 @@
   "name": "cgsg183",
   "version": "1.0.0",
   "description": "",
-  "main": "index.html",
+  "main": "server.js",
+  "repository": "https://github.com/CGSGIN4/chatSrv/",
+  "author": "IN4",
+  "private": false,
   "scripts": {
-    "build-client": "./node_modules/.bin/rollup -c --watch",
-    "start-server": "cd dist && node ../server/server.js"
+    "start-server": "node server.js"
   },
-  "author": "",
   "license": "ISC",
   "dependencies": {
-    "@rollup/plugin-commonjs": "^25.0.1",
-    "@rollup/plugin-node-resolve": "^15.1.0",
     "express": "^4.18.2",
     "morgan": "^1.10.0",
-    "rollup": "^3.25.1",
-    "socket.io": "^4.6.2",
-    "socket.io-client": "^4.6.2"
+    "ws": "^8.13.0"
+  },
+  "engines": {
+    "node": ">=14"
   }
 }
