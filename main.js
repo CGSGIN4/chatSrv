@@ -21,6 +21,28 @@ async function main() {
     console.log(socket.id); // undefined
   });
 
+  document.getElementById("send").onclick = () => {
+    function isEmpty(str) {
+      if (str.trim() == "") return true;
+      return false;
+    }
+    let value = document.getElementById("id1").value;
+    let nick = document.getElementById("nick").value;
+    if (
+      !isEmpty(value) &&
+      !isEmpty(nick) &&
+      nick.length <= 15 &&
+      value.length <= 150
+    ) {
+      console.log(`message from client: ${value}`);
+      document.getElementById("id1").value = "";
+      value = nick + ": " + value;
+      value = value.replace(/\n+$/m, "");
+
+      socket.emit("MessageToServer", value);
+    }
+  };
+
   document.getElementById("id1").onkeyup = (ev) => {
     if (ev.code === "Enter") {
       function isEmpty(str) {

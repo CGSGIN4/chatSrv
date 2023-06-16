@@ -2,6 +2,7 @@ const http = require("http");
 const express = require("express");
 const morgan = require("morgan");
 const { Server } = require("socket.io");
+const fs = require("fs");
 
 const app = express();
 app.use(morgan("combined"));
@@ -20,6 +21,9 @@ io.on("connection", (socket) => {
     const replyMsg = msg;
     console.log(replyMsg);
 
+    let fileContent = fs.readFileSync("../dist/chat.txt", "utf8");
+    fs.appendFileSync("../dist/chat.txt", replyMsg);
+
     for (client of clients) {
       client.emit("MessageFromServer", replyMsg);
       continue;
@@ -35,5 +39,5 @@ io.on("connection", (socket) => {
 });
 
 server.listen(process.env.PORT || 1624, () => {
-  console.log(`Server started on ${server.address().port} :)`);
+  console.log(`Server started on port ${server.address().port} :)`);
 });
